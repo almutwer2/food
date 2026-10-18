@@ -711,3 +711,41 @@ input:focus-visible, textarea:focus-visible { outline: none; }
   pointer-events: auto;
   transition: transform .35s cubic-bezier(.22,.74,.18,1), visibility 0s;
 }
+
+/* Full-bleed real-food photo backdrop for the landing hero. */
+.hero {
+  background-color: #211512;
+  background-image:
+    linear-gradient(105deg, rgba(28,17,15,.78) 0%, rgba(28,17,15,.69) 54%, rgba(28,17,15,.63) 100%),
+    url("images/landing-background.jpg");
+  background-size: cover;
+  background-position: center 48%;
+  background-repeat: no-repeat;
+}
+.hero::before {
+  border-color: rgba(227,198,132,.18);
+  box-shadow: 0 0 0 28px rgba(227,198,132,.025), 0 0 0 58px rgba(227,198,132,.018);
+}
+.hero h1 { color: #fff8ed; }
+.hero h1 span {
+  background: linear-gradient(115deg,#ead49a 0%,#d1ae6c 54%,#f0dfb7 100%);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .eyebrow { color: #e6ca87; }
+.hero .eyebrow-spark { background: rgba(222,193,124,.15); color: #ead49a; border: 1px solid rgba(222,193,124,.25); }
+.hero-intro { color: rgba(255,248,237,.82); }
+.hero .text-link { color: #fff7e9; }
+.hero .text-link span { color: #e5c980; }
+.hero .proof-rating { color: #fff7e9; }
+.hero .proof-rating span:last-child { color: rgba(255,248,237,.8); }
+.hero .proof-divider { color: rgba(255,248,237,.42); }
+.hero .proof-subcopy { color: rgba(255,248,237,.62); }
+.hero-media-index { color: rgba(255,248,237,.7); }
+.hero-bottom-line { background: rgba(255,248,237,.28); }
+
+@media (max-width: 760px) {
+  .hero { background-position: center 40%; }
+}
