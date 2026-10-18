@@ -24,7 +24,7 @@ const CATEGORY_LABELS = Object.freeze({
   dessert: "التحلية",
 });
 const CATEGORY_ORDER = ["mains", "sides", "drinks", "dessert"];
-const FALLBACK_IMAGE = "images/hero-feast.jpg";
+const FALLBACK_IMAGE = "images/hero-chicken.jpg";
 const CART_STORAGE_KEY = "shehi-cart-v1";
 
 const DEMO_PRODUCTS = [
@@ -35,7 +35,7 @@ const DEMO_PRODUCTS = [
     price: 14500,
     categorySlug: "mains",
     categoryName: "الأطباق الرئيسية",
-    imageUrl: "images/hero-feast.jpg",
+    imageUrl: "images/hero-chicken.jpg",
     badge: "الأكثر طلبًا",
   },
   {
@@ -45,18 +45,18 @@ const DEMO_PRODUCTS = [
     price: 16500,
     categorySlug: "mains",
     categoryName: "الأطباق الرئيسية",
-    imageUrl: "images/smash-burger.jpg",
+    imageUrl: "images/burger.jpg",
     badge: "اختيار الشيف",
   },
   {
     _id: "chicken-fatteh",
-    name: "فتّة دجاج بيتية",
-    description: "خبز محمّص وأرز ودجاج، مع صوص الثوم والمكسرات.",
+    name: "دجاج مع الأرز",
+    description: "قطع دجاج متبّلة مع أرز أبيض وسلطة طازجة.",
     price: 13500,
     categorySlug: "mains",
     categoryName: "الأطباق الرئيسية",
-    imageUrl: "images/fattah.jpg",
-    badge: "وصفة بيتية",
+    imageUrl: "images/chicken-rice.jpg",
+    badge: "طبق البيت",
   },
   {
     _id: "family-feast",
@@ -65,7 +65,7 @@ const DEMO_PRODUCTS = [
     price: 36000,
     categorySlug: "mains",
     categoryName: "الأطباق الرئيسية",
-    imageUrl: "images/hero-feast.jpg",
+    imageUrl: "images/shared-meal.jpg",
     badge: "يكفي ٣–٤ أشخاص",
   },
   {
