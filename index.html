@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body data-page="home">
     <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
 
     <div class="announcement-bar">
@@ -42,7 +42,7 @@
         </a>
 
         <nav class="main-nav" aria-label="التنقل الرئيسي">
-          <a href="#menu">قائمتنا</a>
+          <a href="menu.html">قائمتنا</a>
           <a href="#story">حكايتنا</a>
           <a href="#reviews">آراء أهلنا</a>
         </nav>
@@ -139,7 +139,7 @@
         </div>
       </section>
 
-      <section class="menu-section section-space" id="menu" aria-labelledby="menuTitle">
+      <section class="menu-section section-space menu-preview-section" id="menu" aria-labelledby="menuTitle">
         <div class="container">
           <div class="section-heading menu-heading">
             <div class="section-title-block">
@@ -147,24 +147,24 @@
               <h2 id="menuTitle">اختار اللي <span>تشهيه</span></h2>
               <p class="section-description">أطباقنا المفضّلة، جاهزة تتشاركها مع ناسك.</p>
             </div>
-            <label class="menu-search" for="menuSearch">
-              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="10.8" cy="10.8" r="6.7" stroke="currentColor" stroke-width="1.7" /><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
-              <input id="menuSearch" type="search" placeholder="تدور على حاجة؟" autocomplete="off" />
-              <button class="clear-search" id="clearSearch" type="button" aria-label="امسح البحث" hidden>×</button>
-            </label>
+            <p class="menu-preview-aside">لقمة من هنا،<br /><strong>وحكاية تبدأ.</strong></p>
           </div>
 
-          <div class="menu-controls">
-            <div class="category-tabs" id="categoryTabs" role="group" aria-label="تصفية حسب نوع الطبق"></div>
-            <span class="menu-count" id="menuCount" aria-live="polite"></span>
+          <div class="menu-carousel-shell">
+            <button class="carousel-arrow carousel-arrow-previous" id="carouselPrev" type="button" aria-label="الأطباق السابقة">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="m9.5 5 7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+            <div class="menu-carousel-viewport" id="menuCarousel" role="region" aria-label="عينة من أطباق شهي" tabindex="0">
+              <div class="menu-grid menu-carousel-track" id="menuGrid"></div>
+            </div>
+            <button class="carousel-arrow carousel-arrow-next" id="carouselNext" type="button" aria-label="الأطباق التالية">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="m14.5 5-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
           </div>
-          <p class="menu-status" id="menuStatus" role="status" aria-live="polite"></p>
-          <div class="menu-grid" id="menuGrid"></div>
-          <div class="no-results" id="noResults" hidden>
-            <span aria-hidden="true">◌</span>
-            <strong>ما لقيناها هالمرة</strong>
-            <p>جرّب كلمة ثانية أو اختار تصنيف مختلف.</p>
-            <button class="text-link" type="button" id="resetFilters">عرض كل الأطباق <span aria-hidden="true">↙</span></button>
+
+          <div class="menu-preview-footer">
+            <p class="menu-preview-note"><span aria-hidden="true">✳</span> حرّك الشريط واكتشف أطباقًا أكثر</p>
+            <a class="button button-primary" href="menu.html">مشاهدة كامل القائمة <span aria-hidden="true">←</span></a>
           </div>
         </div>
       </section>
@@ -255,7 +255,7 @@
         </div>
         <div class="footer-links">
           <strong>اكتشف شهي</strong>
-          <a href="#menu">قائمة الطعام</a>
+          <a href="menu.html">قائمة الطعام</a>
           <a href="#story">حكايتنا</a>
           <a href="#reviews">آراء أهلنا</a>
         </div>

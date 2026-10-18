@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f0e6" />
+    <meta name="description" content="تصفّح قائمة شهي الكاملة حسب الفئات: أطباق رئيسية، مقبلات، مشروبات وتحلية. اطلب طبقك عبر واتساب." />
+    <title>قائمة شهي — أطباق طازجة لكل لَمّة</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/tajawal-arabic-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/tajawal-arabic-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/amiri-arabic-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="images/landing-background.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="menu">
+    <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+
+    <div class="announcement-bar">
+      <div class="container announcement-inner">
+        <span class="announcement-mark" aria-hidden="true">✳</span>
+        <p>طعم يردّ الروح — طازج من مطبخنا لحد بابك</p>
+        <span class="announcement-side">الطلب متاح يوميًا <span aria-hidden="true">·</span> ١٢ ظهرًا – ١١ مساءً</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="شهي، الصفحة الرئيسية">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="1" y="1" width="46" height="46" rx="17" fill="currentColor" />
+              <path d="M27.9 10.8c-1.8 5.8 5.7 7.1 5.7 13.3 0 5.5-4.2 9.8-9.8 9.8-5.4 0-9.5-4.1-9.5-9.2 0-4 2.3-7.2 6.5-10.9-.2 3.4 1.5 5.3 2.8 5.8.7-3.7 1.6-6 4.3-8.8Z" fill="#F8F4E8" />
+              <path d="M24 30.8c-2.1 0-3.6-1.5-3.6-3.5 0-1.5 1-2.7 2.6-4.2.2 1.8 1.2 2.5 2 2.7.3-1.1.8-1.8 1.5-2.5.2 1.5 1.4 2.5 1.4 4 0 2-1.7 3.5-3.9 3.5Z" fill="#D7B86E" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">شهي<span class="brand-dot">.</span></span>
+            <span class="brand-tagline">لمة، ونكهة، وراحة بال</span>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="التنقل الرئيسي">
+          <a href="#menu">قائمتنا</a>
+          <a href="index.html#story">حكايتنا</a>
+          <a href="index.html#reviews">آراء أهلنا</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="cart-trigger" id="openCart" type="button" aria-label="افتح سلة الطلب، 0 أصناف">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+              <path d="M3.5 4.5h2l2.1 10.1a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.9-1.5l1.4-6.4H6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="19.4" r="1.2" fill="currentColor" />
+              <circle cx="17.3" cy="19.4" r="1.2" fill="currentColor" />
+            </svg>
+            <span class="cart-trigger-label">سلّتي</span>
+            <span class="cart-count" id="headerCartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="menu-page-hero" id="top" aria-labelledby="menuPageTitle">
+        <div class="container menu-page-hero-inner">
+          <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> من مطبخ شهي، بمحبة</p>
+          <h1 id="menuPageTitle">قائمة <span>شهي</span></h1>
+          <p>أطباق طازجة، نكهة بيتية، واختيارات ترضي كل لَمّة. اختار اللي على مزاجك وخلي الباقي علينا.</p>
+          <a class="menu-page-back-link" href="index.html"><span aria-hidden="true">→</span> الرجوع للرئيسية</a>
+          <span class="menu-page-decoration" aria-hidden="true">شهي</span>
+        </div>
+      </section>
+
+      <section class="menu-section section-space full-menu-section" id="menu" aria-labelledby="fullMenuTitle">
+        <div class="container">
+          <div class="section-heading menu-heading full-menu-heading">
+            <div class="section-title-block">
+              <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> حضّر مكانك للسفرة</p>
+              <h2 id="fullMenuTitle">من مطبخنا <span>لسفرتك</span></h2>
+              <p class="section-description">تصفّح أطباقنا حسب الفئة، أو ابحث عن اللي تشتهيه.</p>
+            </div>
+            <label class="menu-search" for="menuSearch">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="10.8" cy="10.8" r="6.7" stroke="currentColor" stroke-width="1.7" /><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
+              <input id="menuSearch" type="search" placeholder="تدور على حاجة؟" autocomplete="off" />
+              <button class="clear-search" id="clearSearch" type="button" aria-label="امسح البحث" hidden>×</button>
+            </label>
+          </div>
+
+          <div class="menu-controls">
+            <div class="category-tabs" id="categoryTabs" role="group" aria-label="تصفية حسب نوع الطبق"></div>
+            <span class="menu-count" id="menuCount" aria-live="polite"></span>
+          </div>
+          <p class="menu-status" id="menuStatus" role="status" aria-live="polite"></p>
+          <div class="menu-grid" id="menuGrid"></div>
+          <div class="no-results" id="noResults" hidden>
+            <span aria-hidden="true">◌</span>
+            <strong>ما لقيناها هالمرة</strong>
+            <p>جرّب كلمة ثانية أو اختار تصنيف مختلف.</p>
+            <button class="text-link" type="button" id="resetFilters">عرض كل الأطباق <span aria-hidden="true">↙</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="delivery-banner" aria-label="توصيل شهي">
+        <div class="container delivery-banner-inner">
+          <div class="delivery-banner-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.4" /><path d="M12 27.5c3.8-1.3 6.8-4.1 8.4-8.1 2.6 3.2 6.2 4.8 11.1 4.8-.7 6.1-4.5 10.1-10 10.1-4.1 0-7.5-2.5-9.5-6.8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M15 33c3.1-4.6 6.5-7.7 11.5-10.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+          </div>
+          <div class="delivery-banner-copy">
+            <p class="delivery-kicker">حاجة بسيطة تفرّحك</p>
+            <h2>التوصيل علينا، لما تطلب <span id="freeDeliveryThresholdBanner">٣٠٬٠٠٠ ج.س</span> أو أكثر</h2>
+          </div>
+          <a href="#menu" class="button button-light">يلا نطلب <span aria-hidden="true">←</span></a>
+          <span class="delivery-decoration" aria-hidden="true">شهي</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand-block">
+          <a class="brand brand-footer" href="#top" aria-label="شهي، إلى الأعلى">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="1" y="1" width="46" height="46" rx="17" fill="currentColor" /><path d="M27.9 10.8c-1.8 5.8 5.7 7.1 5.7 13.3 0 5.5-4.2 9.8-9.8 9.8-5.4 0-9.5-4.1-9.5-9.2 0-4 2.3-7.2 6.5-10.9-.2 3.4 1.5 5.3 2.8 5.8.7-3.7 1.6-6 4.3-8.8Z" fill="#F8F4E8" /><path d="M24 30.8c-2.1 0-3.6-1.5-3.6-3.5 0-1.5 1-2.7 2.6-4.2.2 1.8 1.2 2.5 2 2.7.3-1.1.8-1.8 1.5-2.5.2 1.5 1.4 2.5 1.4 4 0 2-1.7 3.5-3.9 3.5Z" fill="#D7B86E" /></svg>
+            </span>
+            <span class="brand-copy"><span class="brand-name">شهي<span class="brand-dot">.</span></span><span class="brand-tagline">لمة، ونكهة، وراحة بال</span></span>
+          </a>
+          <p>لقمة طيبة، بلمة أحلى.<br />من مطبخنا إلى سفرتك.</p>
+        </div>
+        <div class="footer-links">
+          <strong>اكتشف شهي</strong>
+          <a href="#menu">قائمة الطعام</a>
+          <a href="index.html#story">حكايتنا</a>
+          <a href="index.html#reviews">آراء أهلنا</a>
+        </div>
+        <div class="footer-links footer-contact">
+          <strong>خلّينا قريبين</strong>
+          <span>كل يوم · ١٢ ظهرًا – ١١ مساءً</span>
+          <span>للطلبات، ابدأ من قائمتنا</span>
+          <a href="#menu" class="footer-order-link">اطلب الآن <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="footer-note">
+          <span class="footer-spark" aria-hidden="true">✳</span>
+          <p>اللمة الحلوة<br /><strong>تبدأ من شهي.</strong></p>
+        </div>
+      </div>
+      <div class="container footer-bottom"><span>© <span id="currentYear"></span> شهي. كل لقمة بمحبة.</span><a href="#top">للأعلى ↑</a></div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true" inert tabindex="-1">
+      <div class="cart-drawer-header">
+        <div><p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> طلبك على ذوقك</p><h2 id="cartTitle">سلّة شهي</h2></div>
+        <button class="icon-button close-cart" id="closeCart" type="button" aria-label="إغلاق سلة الطلب">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+
+      <div class="cart-scroll-area">
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty">
+          <span class="empty-bowl" aria-hidden="true">✳</span>
+          <strong>سلّتك لسه فاضية</strong>
+          <p>اختار أكلة بتحبها، وخلي الباقي علينا.</p>
+          <a class="text-link" href="#menu" id="continueShopping">شوف الأطباق <span aria-hidden="true">↙</span></a>
+        </div>
+
+        <div class="cart-extras" id="cartExtras">
+          <div class="delivery-progress" id="deliveryProgress" aria-live="polite">
+            <div class="delivery-progress-copy"><span id="deliveryProgressText"></span><strong id="deliveryProgressAmount"></strong></div>
+            <div class="progress-track" aria-hidden="true"><span id="deliveryProgressFill"></span></div>
+          </div>
+          <div class="promo-box">
+            <label for="promoCode">عندك رمز خصم؟</label>
+            <div class="promo-row"><input id="promoCode" type="text" placeholder="مثلاً SHAHI10" autocomplete="off" maxlength="24" dir="ltr" /><button type="button" id="applyPromo">تطبيق</button></div>
+            <p class="promo-message" id="promoMessage" aria-live="polite">استخدم SHAHI10 لخصم ١٠٪ على طلبك.</p>
+          </div>
+          <div class="cart-totals">
+            <div><span>المجموع الفرعي</span><strong id="cartSubtotal">0.00 ج.س</strong></div>
+            <div class="discount-line" id="discountLine" hidden><span>خصم SHAHI10</span><strong id="cartDiscount">− 0.00 ج.س</strong></div>
+            <div><span>التوصيل</span><strong id="cartDelivery">0.00 ج.س</strong></div>
+            <div class="total-line"><span>الإجمالي</span><strong id="cartTotal">0.00 ج.س</strong></div>
+          </div>
+          <p class="cart-hint"><span aria-hidden="true">✳</span> التوصيل مجاني للطلبات فوق <span id="cartFreeDeliveryHint">٣٠٬٠٠٠ ج.س</span></p>
+        </div>
+
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <div class="checkout-form-heading"><h3>وين نوصّلها؟</h3><span>خطوة واحدة وتكون عندك</span></div>
+          <label class="form-field" for="customerName">اسم المستلم<input id="customerName" name="name" type="text" autocomplete="name" maxlength="70" placeholder="الاسم الكريم" required /></label>
+          <label class="form-field" for="customerPhone">رقم التواصل<input id="customerPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="مثال: ٠٩١ ٢٣٤ ٥٦٧٨" required /></label>
+          <label class="form-field" for="customerAddress">عنوان التوصيل<textarea id="customerAddress" name="address" rows="2" autocomplete="street-address" maxlength="220" placeholder="الحي، الشارع، وأقرب علامة مميزة" required></textarea></label>
+          <label class="form-field" for="orderNotes">ملاحظة للمطبخ <span class="optional-label">اختياري</span><textarea id="orderNotes" name="notes" rows="2" maxlength="180" placeholder="أي تفاصيل تحب نعرفها؟"></textarea></label>
+          <button class="button button-primary checkout-button" type="submit" id="checkoutButton" disabled>
+            <span>أكمل الطلب عبر واتساب</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <p class="checkout-note">ما في دفع إلكتروني — نأكد طلبك معاك عبر واتساب.</p>
+        </form>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="mobile-cart-bar" id="mobileCartBar" hidden>
+      <button type="button" id="mobileCartButton" aria-label="افتح السلة">
+        <span class="mobile-cart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3.5 4.5h2l2.1 10.1a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.9-1.5l1.4-6.4H6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="19.4" r="1.2" fill="currentColor" /><circle cx="17.3" cy="19.4" r="1.2" fill="currentColor" /></svg></span>
+        <span class="mobile-cart-copy"><strong>عرض السلّة</strong><small id="mobileCartCount">0 أصناف</small></span>
+        <strong class="mobile-cart-total" id="mobileCartTotal">0.00 ج.س</strong>
+        <span class="mobile-cart-arrow" aria-hidden="true">←</span>
+      </button>
+    </div>
+  </body>
+</html>

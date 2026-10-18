@@ -26,6 +26,8 @@ const CATEGORY_LABELS = Object.freeze({
 const CATEGORY_ORDER = ["mains", "sides", "drinks", "dessert"];
 const FALLBACK_IMAGE = "images/hero-chicken.jpg";
 const CART_STORAGE_KEY = "shehi-cart-v1";
+const HOME_PREVIEW_LIMIT = 4;
+const HOME_FEATURED_ORDER = ["tawook", "smash-burger", "lemon-mint", "kunafa"];
 
 const DEMO_PRODUCTS = [
   {
@@ -93,6 +95,9 @@ const DEMO_PRODUCTS = [
 const elements = {
   categoryTabs: document.getElementById("categoryTabs"),
   menuGrid: document.getElementById("menuGrid"),
+  carouselViewport: document.getElementById("menuCarousel"),
+  carouselPrevious: document.getElementById("carouselPrev"),
+  carouselNext: document.getElementById("carouselNext"),
   menuCount: document.getElementById("menuCount"),
   menuStatus: document.getElementById("menuStatus"),
   freeDeliveryThresholdBanner: document.getElementById("freeDeliveryThresholdBanner"),
@@ -134,12 +139,14 @@ const elements = {
   currentYear: document.getElementById("currentYear"),
 };
 
+const IS_MENU_PAGE = document.body?.dataset.page === "menu";
 let products = DEMO_PRODUCTS.map(normalizeProduct).filter(Boolean);
 let selectedCategory = "all";
 let searchTerm = "";
 let promoApplied = false;
 let cart = loadCart();
 let toastTimer = 0;
+let carouselAutoplayTimer = 0;
 let lastFocusedElement = null;
 
 function normalizeProduct(item) {
@@ -273,6 +280,8 @@ function categoryLabel(slug, fallback = "أطباقنا") {
 }
 
 function renderCategoryTabs() {
+  if (!elements.categoryTabs) return;
+
   const known = CATEGORY_ORDER.filter((slug) => products.some((product) => product.categorySlug === slug));
   const custom = [...new Set(products.map((product) => product.categorySlug))]
     .filter((slug) => slug && slug !== "all" && !CATEGORY_ORDER.includes(slug));
@@ -299,47 +308,87 @@ function getFilteredProducts() {
   });
 }
 
+function renderFoodCard(product) {
+  const image = escapeHTML(safeImageURL(product.imageUrl));
+  const alt = escapeHTML(product.imageAlt || product.name);
+  const badge = product.badge ? `<span class="food-badge">${escapeHTML(product.badge)}</span>` : "";
+  const price = formatAmount(toCents(product.price));
+  const category = categoryLabel(product.categorySlug, product.categoryName);
+  return `
+    <article class="food-card">
+      <div class="food-card-image-wrap">
+        <img class="food-card-image" src="${image}" alt="${alt}" loading="lazy" decoding="async" />
+        ${badge}
+      </div>
+      <div class="food-card-content">
+        <div class="food-card-heading">
+          <div><h3>${escapeHTML(product.name)}</h3><div class="food-card-category">${escapeHTML(category)}</div></div>
+        </div>
+        <p class="food-card-description">${escapeHTML(product.description)}</p>
+        <div class="food-card-footer">
+          <span class="food-price" dir="ltr">${price}<small> ج.س</small></span>
+          <button class="add-button" type="button" data-add-to-cart="${escapeHTML(product.id)}" aria-label="أضف ${escapeHTML(product.name)} إلى السلة">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+            <span>أضف</span>
+          </button>
+        </div>
+      </div>
+    </article>`;
+}
+
 function renderProducts() {
   const filtered = getFilteredProducts();
-  elements.menuCount.textContent = `عرض ${formatArabicNumber(filtered.length)} من الأطباق`;
-  elements.noResults.hidden = filtered.length > 0;
-  elements.menuGrid.hidden = filtered.length === 0;
+  let displayed = filtered;
 
-  if (!filtered.length) {
+  if (!IS_MENU_PAGE) {
+    const featured = HOME_FEATURED_ORDER
+      .map((id) => filtered.find((product) => product.id === id))
+      .filter(Boolean);
+    const featuredIds = new Set(featured.map((product) => product.id));
+    const remaining = filtered.filter((product) => !featuredIds.has(product.id));
+    displayed = [...featured, ...remaining].slice(0, HOME_PREVIEW_LIMIT);
+  }
+
+  if (elements.menuCount) {
+    elements.menuCount.textContent = IS_MENU_PAGE
+      ? `عرض ${formatArabicNumber(filtered.length)} من الأطباق`
+      : `مختارة لك · ${formatArabicNumber(displayed.length)} أطباق`;
+  }
+  if (elements.noResults) elements.noResults.hidden = filtered.length > 0;
+  elements.menuGrid.hidden = displayed.length === 0;
+
+  if (!displayed.length) {
     elements.menuGrid.innerHTML = "";
     return;
   }
 
-  elements.menuGrid.innerHTML = filtered.map((product) => {
-    const image = escapeHTML(safeImageURL(product.imageUrl));
-    const alt = escapeHTML(product.imageAlt || product.name);
-    const badge = product.badge ? `<span class="food-badge">${escapeHTML(product.badge)}</span>` : "";
-    const price = formatAmount(toCents(product.price));
-    const category = categoryLabel(product.categorySlug, product.categoryName);
-    return `
-      <article class="food-card">
-        <div class="food-card-image-wrap">
-          <img class="food-card-image" src="${image}" alt="${alt}" loading="lazy" decoding="async" />
-          ${badge}
-        </div>
-        <div class="food-card-content">
-          <div class="food-card-heading">
-            <div><h3>${escapeHTML(product.name)}</h3><div class="food-card-category">${escapeHTML(category)}</div></div>
+  if (IS_MENU_PAGE) {
+    const orderedSlugs = [
+      ...CATEGORY_ORDER.filter((slug) => displayed.some((product) => product.categorySlug === slug)),
+      ...[...new Set(displayed.map((product) => product.categorySlug))]
+        .filter((slug) => slug && !CATEGORY_ORDER.includes(slug)),
+    ];
+    elements.menuGrid.innerHTML = orderedSlugs.map((slug) => {
+      const group = displayed.filter((product) => product.categorySlug === slug);
+      const headingId = `menuCategory-${slug}`;
+      const label = categoryLabel(slug, group[0]?.categoryName);
+      return `
+        <section class="menu-category-group" aria-labelledby="${escapeHTML(headingId)}">
+          <div class="menu-category-heading">
+            <h3 id="${escapeHTML(headingId)}">${escapeHTML(label)}</h3>
+            <span class="menu-category-count">${formatArabicNumber(group.length)} أطباق</span>
           </div>
-          <p class="food-card-description">${escapeHTML(product.description)}</p>
-          <div class="food-card-footer">
-            <span class="food-price" dir="ltr">${price}<small> ج.س</small></span>
-            <button class="add-button" type="button" data-add-to-cart="${escapeHTML(product.id)}" aria-label="أضف ${escapeHTML(product.name)} إلى السلة">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              <span>أضف</span>
-            </button>
-          </div>
-        </div>
-      </article>`;
-  }).join("");
+          <div class="menu-grid category-product-grid">${group.map(renderFoodCard).join("")}</div>
+        </section>`;
+    }).join("");
+    return;
+  }
+
+  elements.menuGrid.innerHTML = displayed.map(renderFoodCard).join("");
 }
 
 function setMenuStatus(message = "", state = "") {
+  if (!elements.menuStatus) return;
   elements.menuStatus.textContent = message;
   elements.menuStatus.classList.toggle("is-loading", state === "loading");
 }
@@ -643,41 +692,124 @@ function handleCheckout(event) {
 function resetFilters() {
   selectedCategory = "all";
   searchTerm = "";
-  elements.menuSearch.value = "";
-  elements.clearSearch.hidden = true;
+  if (elements.menuSearch) elements.menuSearch.value = "";
+  if (elements.clearSearch) elements.clearSearch.hidden = true;
   renderCategoryTabs();
   renderProducts();
 }
 
-function initializeEventListeners() {
-  elements.categoryTabs.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-category]");
-    if (!button) return;
-    selectedCategory = button.dataset.category;
-    renderCategoryTabs();
-    renderProducts();
+function scrollMenuCarousel(direction = 1) {
+  const viewport = elements.carouselViewport;
+  if (!viewport) return;
+
+  const firstCard = elements.menuGrid.querySelector(".food-card");
+  const cardWidth = firstCard?.getBoundingClientRect().width || viewport.clientWidth * 0.8;
+  const gapValue = window.getComputedStyle(elements.menuGrid).columnGap || window.getComputedStyle(elements.menuGrid).gap;
+  const gap = Number.parseFloat(gapValue) || 0;
+  const inlineDirection = window.getComputedStyle(viewport).direction;
+  const rtlMultiplier = inlineDirection === "rtl" ? -1 : 1;
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+  viewport.scrollBy({
+    left: rtlMultiplier * direction * (cardWidth + gap),
+    behavior: reduceMotion ? "auto" : "smooth",
   });
+}
+
+function advanceMenuCarousel() {
+  const viewport = elements.carouselViewport;
+  if (!viewport || viewport.scrollWidth <= viewport.clientWidth + 8) return;
+
+  const maximumScroll = viewport.scrollWidth - viewport.clientWidth;
+  const currentScroll = Math.abs(viewport.scrollLeft);
+  if (currentScroll >= maximumScroll - 12) {
+    viewport.scrollTo({ left: 0, behavior: "smooth" });
+    return;
+  }
+  scrollMenuCarousel(1);
+}
+
+function initializeHomeCarousel() {
+  const viewport = elements.carouselViewport;
+  if (IS_MENU_PAGE || !viewport) return;
+
+  elements.carouselPrevious?.addEventListener("click", () => scrollMenuCarousel(-1));
+  elements.carouselNext?.addEventListener("click", () => scrollMenuCarousel(1));
+
+  if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+  const shell = viewport.closest(".menu-carousel-shell");
+  if (!shell) return;
+
+  let pointerInside = false;
+  let focusInside = false;
+  const stop = () => {
+    window.clearInterval(carouselAutoplayTimer);
+    carouselAutoplayTimer = 0;
+  };
+  const start = () => {
+    if (document.hidden || pointerInside || focusInside || carouselAutoplayTimer) return;
+    carouselAutoplayTimer = window.setInterval(advanceMenuCarousel, 5200);
+  };
+
+  shell.addEventListener("pointerenter", () => {
+    pointerInside = true;
+    stop();
+  });
+  shell.addEventListener("pointerleave", () => {
+    pointerInside = false;
+    start();
+  });
+  shell.addEventListener("focusin", () => {
+    focusInside = true;
+    stop();
+  });
+  shell.addEventListener("focusout", (event) => {
+    if (shell.contains(event.relatedTarget)) return;
+    focusInside = false;
+    start();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else start();
+  });
+  start();
+}
+
+function initializeEventListeners() {
+  if (elements.categoryTabs) {
+    elements.categoryTabs.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      selectedCategory = button.dataset.category;
+      renderCategoryTabs();
+      renderProducts();
+    });
+  }
 
   elements.menuGrid.addEventListener("click", (event) => {
     const button = event.target.closest("[data-add-to-cart]");
     if (button) addToCart(button.dataset.addToCart);
   });
 
-  elements.menuSearch.addEventListener("input", () => {
-    searchTerm = elements.menuSearch.value;
-    elements.clearSearch.hidden = !searchTerm;
-    renderProducts();
-  });
+  if (elements.menuSearch) {
+    elements.menuSearch.addEventListener("input", () => {
+      searchTerm = elements.menuSearch.value;
+      if (elements.clearSearch) elements.clearSearch.hidden = !searchTerm;
+      renderProducts();
+    });
+  }
 
-  elements.clearSearch.addEventListener("click", () => {
-    elements.menuSearch.value = "";
-    searchTerm = "";
-    elements.clearSearch.hidden = true;
-    elements.menuSearch.focus();
-    renderProducts();
-  });
+  if (elements.clearSearch) {
+    elements.clearSearch.addEventListener("click", () => {
+      if (elements.menuSearch) elements.menuSearch.value = "";
+      searchTerm = "";
+      elements.clearSearch.hidden = true;
+      elements.menuSearch?.focus();
+      renderProducts();
+    });
+  }
 
-  elements.resetFilters.addEventListener("click", resetFilters);
+  if (elements.resetFilters) elements.resetFilters.addEventListener("click", resetFilters);
   elements.openCart.addEventListener("click", openCart);
   elements.mobileCartButton.addEventListener("click", openCart);
   elements.closeCart.addEventListener("click", closeCart);
@@ -726,12 +858,13 @@ function initializeEventListeners() {
 }
 
 function initialize() {
-  if (!elements.categoryTabs || !elements.menuGrid || !elements.cartDrawer) return;
-  elements.currentYear.textContent = String(new Date().getFullYear());
+  if (!elements.menuGrid || !elements.cartDrawer) return;
+  if (elements.currentYear) elements.currentYear.textContent = String(new Date().getFullYear());
   const freeDeliveryLabel = `${formatArabicNumber(CONFIG.freeDeliveryThreshold)} ج.س`;
-  elements.freeDeliveryThresholdBanner.textContent = freeDeliveryLabel;
-  elements.cartFreeDeliveryHint.textContent = freeDeliveryLabel;
+  if (elements.freeDeliveryThresholdBanner) elements.freeDeliveryThresholdBanner.textContent = freeDeliveryLabel;
+  if (elements.cartFreeDeliveryHint) elements.cartFreeDeliveryHint.textContent = freeDeliveryLabel;
   initializeEventListeners();
+  initializeHomeCarousel();
   loadCatalog();
 }
 
