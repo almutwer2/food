@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff8ef" />
+    <meta name="description" content="شهي — أطباق طازجة ومذاق بيتي يوصلك لبابك. تصفّح القائمة واطلب الآن عبر واتساب." />
+    <title>شهي — أطيب الأكل، على بابك</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/tajawal-arabic-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/tajawal-arabic-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+
+    <div class="announcement-bar">
+      <div class="container announcement-inner">
+        <span class="announcement-mark" aria-hidden="true">✳</span>
+        <p>طعم يردّ الروح — طازج من مطبخنا لحد بابك</p>
+        <span class="announcement-side">الطلب متاح يوميًا <span aria-hidden="true">·</span> ١٢ ظهرًا – ١١ مساءً</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="شهي، الصفحة الرئيسية">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="1" y="1" width="46" height="46" rx="17" fill="currentColor" />
+              <path d="M27.9 10.8c-1.8 5.8 5.7 7.1 5.7 13.3 0 5.5-4.2 9.8-9.8 9.8-5.4 0-9.5-4.1-9.5-9.2 0-4 2.3-7.2 6.5-10.9-.2 3.4 1.5 5.3 2.8 5.8.7-3.7 1.6-6 4.3-8.8Z" fill="#F8F4E8" />
+              <path d="M24 30.8c-2.1 0-3.6-1.5-3.6-3.5 0-1.5 1-2.7 2.6-4.2.2 1.8 1.2 2.5 2 2.7.3-1.1.8-1.8 1.5-2.5.2 1.5 1.4 2.5 1.4 4 0 2-1.7 3.5-3.9 3.5Z" fill="#A6402E" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">شهي<span class="brand-dot">.</span></span>
+            <span class="brand-tagline">لمة، ونكهة، وراحة بال</span>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="التنقل الرئيسي">
+          <a href="#menu">قائمتنا</a>
+          <a href="#story">حكايتنا</a>
+          <a href="#reviews">آراء أهلنا</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="cart-trigger" id="openCart" type="button" aria-label="افتح سلة الطلب، 0 أصناف">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+              <path d="M3.5 4.5h2l2.1 10.1a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.9-1.5l1.4-6.4H6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="10" cy="19.4" r="1.2" fill="currentColor" />
+              <circle cx="17.3" cy="19.4" r="1.2" fill="currentColor" />
+            </svg>
+            <span class="cart-trigger-label">سلّتي</span>
+            <span class="cart-count" id="headerCartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="heroTitle">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> من مطبخ شهي، بمحبة</p>
+            <h1 id="heroTitle">أطيب الأكل،<br /><span>على بابك.</span></h1>
+            <p class="hero-intro">لمة حلوة تبدأ من لقمة. أطباق نجهزها طازجة كل يوم، بتتبيلة بيتية ومكونات نختارها بعناية — وإنت بس اختار اللي تشتهيه.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#menu">
+                <span>شوف القائمة</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </a>
+              <a class="text-link" href="#story">حكاية شهي <span aria-hidden="true">↙</span></a>
+            </div>
+            <div class="hero-proof">
+              <div class="proof-avatars" aria-hidden="true">
+                <span class="proof-avatar proof-avatar-one">م</span>
+                <span class="proof-avatar proof-avatar-two">س</span>
+                <span class="proof-avatar proof-avatar-three">ل</span>
+              </div>
+              <div class="proof-copy">
+                <div class="proof-rating"><span class="star" aria-hidden="true">★</span> ٤٫٩ <span class="proof-divider">|</span> <span>يحبّها أهلنا</span></div>
+                <span class="proof-subcopy">كل لقمة فيها حكاية</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="hero-sunburst" aria-hidden="true"></div>
+            <div class="hero-photo-frame">
+              <img class="hero-photo" src="images/hero-feast.jpg" alt="طبق دجاج مشوي مع أرز عطري وخبز طازج" fetchpriority="high" />
+              <div class="hero-photo-shade" aria-hidden="true"></div>
+              <div class="hero-photo-caption"><span class="caption-dot" aria-hidden="true"></span> وصفة اليوم من مطبخنا</div>
+            </div>
+            <div class="hero-floating-card">
+              <span class="floating-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2c-1.5 2-6.5 7.1-6.5 11a6.5 6.5 0 1 0 13 0c0-3.9-5-9-6.5-11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /><path d="M9.4 14.4c.2 1.5 1.2 2.5 2.7 2.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+              </span>
+              <span><strong>طازج على طول</strong><small>يتحضّر بعد طلبك</small></span>
+            </div>
+            <div class="hero-stamp" aria-label="محضّر بحب">
+              <span class="stamp-star" aria-hidden="true">✳</span>
+              <span>محضّر<br />بحب</span>
+              <span class="stamp-star" aria-hidden="true">✳</span>
+            </div>
+            <span class="hero-media-index" aria-hidden="true">01 / 05</span>
+          </div>
+        </div>
+        <div class="hero-bottom-line" aria-hidden="true"></div>
+      </section>
+
+      <section class="benefits" aria-label="مميزات شهي">
+        <div class="container">
+          <div class="benefit-panel">
+            <article class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.2c-1.4 2-6 6.5-6 10.3a6 6 0 0 0 12 0c0-3.8-4.6-8.3-6-10.3Z" stroke="currentColor" stroke-width="1.6" /><path d="M9.5 14c.2 1.4 1.2 2.4 2.6 2.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+              </span>
+              <span><strong>طازج كل يوم</strong><small>من مطبخنا مباشرة</small></span>
+            </article>
+            <span class="benefit-separator" aria-hidden="true"></span>
+            <article class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 14.5a8 8 0 1 1 16 0v2a2 2 0 0 1-2 2h-1.5v-5h3M4 14.5v1.8a2.2 2.2 0 0 0 2.2 2.2h1.3v-5H4Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /><path d="M12 6.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+              </span>
+              <span><strong>توصيل يفرّح</strong><small>لحد بابك بكل عناية</small></span>
+            </article>
+            <span class="benefit-separator" aria-hidden="true"></span>
+            <article class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="m12 3 1.9 5.8 6.1.1-4.9 3.6 1.8 5.8-4.9-3.5-4.9 3.5 1.8-5.8-4.9-3.6 6.1-.1L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /></svg>
+              </span>
+              <span><strong>طعم يستاهل</strong><small>وصفة بيتية من القلب</small></span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section section-space" id="menu" aria-labelledby="menuTitle">
+        <div class="container">
+          <div class="section-heading menu-heading">
+            <div class="section-title-block">
+              <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> اليوم على مزاجك</p>
+              <h2 id="menuTitle">اختار اللي <span>تشهيه</span></h2>
+              <p class="section-description">أطباقنا المفضّلة، جاهزة تتشاركها مع ناسك.</p>
+            </div>
+            <label class="menu-search" for="menuSearch">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="10.8" cy="10.8" r="6.7" stroke="currentColor" stroke-width="1.7" /><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
+              <input id="menuSearch" type="search" placeholder="تدور على حاجة؟" autocomplete="off" />
+              <button class="clear-search" id="clearSearch" type="button" aria-label="امسح البحث" hidden>×</button>
+            </label>
+          </div>
+
+          <div class="menu-controls">
+            <div class="category-tabs" id="categoryTabs" role="group" aria-label="تصفية حسب نوع الطبق"></div>
+            <span class="menu-count" id="menuCount" aria-live="polite"></span>
+          </div>
+          <p class="menu-status" id="menuStatus" role="status" aria-live="polite"></p>
+          <div class="menu-grid" id="menuGrid"></div>
+          <div class="no-results" id="noResults" hidden>
+            <span aria-hidden="true">◌</span>
+            <strong>ما لقيناها هالمرة</strong>
+            <p>جرّب كلمة ثانية أو اختار تصنيف مختلف.</p>
+            <button class="text-link" type="button" id="resetFilters">عرض كل الأطباق <span aria-hidden="true">↙</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="delivery-banner" aria-label="توصيل شهي">
+        <div class="container delivery-banner-inner">
+          <div class="delivery-banner-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.4" /><path d="M12 27.5c3.8-1.3 6.8-4.1 8.4-8.1 2.6 3.2 6.2 4.8 11.1 4.8-.7 6.1-4.5 10.1-10 10.1-4.1 0-7.5-2.5-9.5-6.8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" /><path d="M15 33c3.1-4.6 6.5-7.7 11.5-10.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+          </div>
+          <div class="delivery-banner-copy">
+            <p class="delivery-kicker">حاجة بسيطة تفرّحك</p>
+            <h2>التوصيل علينا، لما تطلب <span id="freeDeliveryThresholdBanner">٣٠٬٠٠٠ ج.س</span> أو أكثر</h2>
+          </div>
+          <a href="#menu" class="button button-light">يلا نطلب <span aria-hidden="true">←</span></a>
+          <span class="delivery-decoration" aria-hidden="true">شهي</span>
+        </div>
+      </section>
+
+      <section class="story-section section-space" id="story" aria-labelledby="storyTitle">
+        <div class="container story-grid">
+          <div class="story-copy">
+            <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> حكاية من القلب</p>
+            <h2 id="storyTitle">الأكل الطيب،<br /><span>يلمّ الناس.</span></h2>
+            <p>بدأت حكاية شهي من مائدة بيت عامرة — وصفات نعرفها ونحبها، ونكهة تخلّي اللحظة أحلى. كل طبق نجهزه كأنه لضيوفنا، ونوصله ليك بنفس المحبة.</p>
+            <a class="text-link" href="#menu">جرّب طعم شهي <span aria-hidden="true">↙</span></a>
+            <div class="story-signature"><span class="signature-line" aria-hidden="true"></span><span>من مطبخنا، بمحبة</span><span class="signature-flower" aria-hidden="true">✳</span></div>
+          </div>
+          <div class="story-visual">
+            <div class="story-image-large"><img src="images/fattah.jpg" alt="فتّة دجاج محضّرة على الطريقة البيتية" loading="lazy" /></div>
+            <div class="story-image-small"><img src="images/kunafa.jpg" alt="كنافة ذهبية بالفستق" loading="lazy" /></div>
+            <div class="story-number"><strong>١٠٠٪</strong><span>محبّة في<br />كل طبق</span></div>
+            <span class="story-doodle" aria-hidden="true">✳</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews-section section-space" id="reviews" aria-labelledby="reviewsTitle">
+        <div class="container">
+          <div class="section-heading reviews-heading">
+            <div class="section-title-block">
+              <p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> كلام يفرّحنا</p>
+              <h2 id="reviewsTitle">من أهلنا <span>لأهلنا</span></h2>
+            </div>
+            <p class="reviews-aside">أحلى تقييم عندنا؟<br /><strong>لما ترجع تطلب مرة تانية.</strong></p>
+          </div>
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="review-stars" aria-label="خمسة من خمسة">★★★★★</div>
+              <blockquote>«الطاووق طعمه حكاية، والتوصيل وصل سخن. بقيت أطلبه كل مرة!»</blockquote>
+              <div class="review-author"><span class="review-avatar review-avatar-peach" aria-hidden="true">م</span><span><strong>مها ع.</strong><small>من زباين شهي</small></span><span class="review-quote-mark" aria-hidden="true">“</span></div>
+            </article>
+            <article class="review-card review-card-featured">
+              <div class="review-stars" aria-label="خمسة من خمسة">★★★★★</div>
+              <blockquote>«أحلى حاجة إن الأكل فعلاً بيتي، والوجبات كريمة وتكفي اللمة.»</blockquote>
+              <div class="review-author"><span class="review-avatar review-avatar-sage" aria-hidden="true">ع</span><span><strong>عمر م.</strong><small>من زباين شهي</small></span><span class="review-quote-mark" aria-hidden="true">“</span></div>
+            </article>
+            <article class="review-card">
+              <div class="review-stars" aria-label="خمسة من خمسة">★★★★★</div>
+              <blockquote>«الكنافة ممتازة، والليمون بالنعناع منعش شديد. تجربة سمحة!»</blockquote>
+              <div class="review-author"><span class="review-avatar review-avatar-yellow" aria-hidden="true">س</span><span><strong>سارة ن.</strong><small>من زباين شهي</small></span><span class="review-quote-mark" aria-hidden="true">“</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="location-section">
+        <div class="container location-card">
+          <div class="location-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M19 10.2c0 5-7 10.2-7 10.2S5 15.2 5 10.2a7 7 0 1 1 14 0Z" stroke="currentColor" stroke-width="1.6" /><circle cx="12" cy="10" r="2.3" stroke="currentColor" stroke-width="1.6" /></svg>
+          </div>
+          <div><p class="location-kicker">وين ما كنت</p><h2>شهي أقرب مما تتخيّل.</h2><p>نجهز طلبك بحب، ونوصله لحد بابك.</p></div>
+          <a class="button button-primary" href="#menu">اطلب وجبتك <span aria-hidden="true">←</span></a>
+          <span class="location-flower" aria-hidden="true">✳</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand-block">
+          <a class="brand brand-footer" href="#top" aria-label="شهي، إلى الأعلى">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="1" y="1" width="46" height="46" rx="17" fill="currentColor" /><path d="M27.9 10.8c-1.8 5.8 5.7 7.1 5.7 13.3 0 5.5-4.2 9.8-9.8 9.8-5.4 0-9.5-4.1-9.5-9.2 0-4 2.3-7.2 6.5-10.9-.2 3.4 1.5 5.3 2.8 5.8.7-3.7 1.6-6 4.3-8.8Z" fill="#F8F4E8" /><path d="M24 30.8c-2.1 0-3.6-1.5-3.6-3.5 0-1.5 1-2.7 2.6-4.2.2 1.8 1.2 2.5 2 2.7.3-1.1.8-1.8 1.5-2.5.2 1.5 1.4 2.5 1.4 4 0 2-1.7 3.5-3.9 3.5Z" fill="#A6402E" /></svg>
+            </span>
+            <span class="brand-copy"><span class="brand-name">شهي<span class="brand-dot">.</span></span><span class="brand-tagline">لمة، ونكهة، وراحة بال</span></span>
+          </a>
+          <p>لقمة طيبة، بلمة أحلى.<br />من مطبخنا إلى سفرتك.</p>
+        </div>
+        <div class="footer-links">
+          <strong>اكتشف شهي</strong>
+          <a href="#menu">قائمة الطعام</a>
+          <a href="#story">حكايتنا</a>
+          <a href="#reviews">آراء أهلنا</a>
+        </div>
+        <div class="footer-links footer-contact">
+          <strong>خلّينا قريبين</strong>
+          <span>كل يوم · ١٢ ظهرًا – ١١ مساءً</span>
+          <span>للطلبات، ابدأ من قائمتنا</span>
+          <a href="#menu" class="footer-order-link">اطلب الآن <span aria-hidden="true">←</span></a>
+        </div>
+        <div class="footer-note">
+          <span class="footer-spark" aria-hidden="true">✳</span>
+          <p>اللمة الحلوة<br /><strong>تبدأ من شهي.</strong></p>
+        </div>
+      </div>
+      <div class="container footer-bottom"><span>© <span id="currentYear"></span> شهي. كل لقمة بمحبة.</span><a href="#top">للأعلى ↑</a></div>
+    </footer>
+
+    <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true" inert tabindex="-1">
+      <div class="cart-drawer-header">
+        <div><p class="eyebrow"><span class="eyebrow-spark" aria-hidden="true">✳</span> طلبك على ذوقك</p><h2 id="cartTitle">سلّة شهي</h2></div>
+        <button class="icon-button close-cart" id="closeCart" type="button" aria-label="إغلاق سلة الطلب">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+
+      <div class="cart-scroll-area">
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-empty" id="cartEmpty">
+          <span class="empty-bowl" aria-hidden="true">✳</span>
+          <strong>سلّتك لسه فاضية</strong>
+          <p>اختار أكلة بتحبها، وخلي الباقي علينا.</p>
+          <a class="text-link" href="#menu" id="continueShopping">شوف الأطباق <span aria-hidden="true">↙</span></a>
+        </div>
+
+        <div class="cart-extras" id="cartExtras">
+          <div class="delivery-progress" id="deliveryProgress" aria-live="polite">
+            <div class="delivery-progress-copy"><span id="deliveryProgressText"></span><strong id="deliveryProgressAmount"></strong></div>
+            <div class="progress-track" aria-hidden="true"><span id="deliveryProgressFill"></span></div>
+          </div>
+          <div class="promo-box">
+            <label for="promoCode">عندك رمز خصم؟</label>
+            <div class="promo-row"><input id="promoCode" type="text" placeholder="مثلاً SHAHI10" autocomplete="off" maxlength="24" dir="ltr" /><button type="button" id="applyPromo">تطبيق</button></div>
+            <p class="promo-message" id="promoMessage" aria-live="polite">استخدم SHAHI10 لخصم ١٠٪ على طلبك.</p>
+          </div>
+          <div class="cart-totals">
+            <div><span>المجموع الفرعي</span><strong id="cartSubtotal">0.00 ج.س</strong></div>
+            <div class="discount-line" id="discountLine" hidden><span>خصم SHAHI10</span><strong id="cartDiscount">− 0.00 ج.س</strong></div>
+            <div><span>التوصيل</span><strong id="cartDelivery">0.00 ج.س</strong></div>
+            <div class="total-line"><span>الإجمالي</span><strong id="cartTotal">0.00 ج.س</strong></div>
+          </div>
+          <p class="cart-hint"><span aria-hidden="true">✳</span> التوصيل مجاني للطلبات فوق <span id="cartFreeDeliveryHint">٣٠٬٠٠٠ ج.س</span></p>
+        </div>
+
+        <form class="checkout-form" id="checkoutForm" novalidate>
+          <div class="checkout-form-heading"><h3>وين نوصّلها؟</h3><span>خطوة واحدة وتكون عندك</span></div>
+          <label class="form-field" for="customerName">اسم المستلم<input id="customerName" name="name" type="text" autocomplete="name" maxlength="70" placeholder="الاسم الكريم" required /></label>
+          <label class="form-field" for="customerPhone">رقم التواصل<input id="customerPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="مثال: ٠٩١ ٢٣٤ ٥٦٧٨" required /></label>
+          <label class="form-field" for="customerAddress">عنوان التوصيل<textarea id="customerAddress" name="address" rows="2" autocomplete="street-address" maxlength="220" placeholder="الحي، الشارع، وأقرب علامة مميزة" required></textarea></label>
+          <label class="form-field" for="orderNotes">ملاحظة للمطبخ <span class="optional-label">اختياري</span><textarea id="orderNotes" name="notes" rows="2" maxlength="180" placeholder="أي تفاصيل تحب نعرفها؟"></textarea></label>
+          <button class="button button-primary checkout-button" type="submit" id="checkoutButton" disabled>
+            <span>أكمل الطلب عبر واتساب</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M19 12H5m0 0 6 6m-6-6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+          <p class="checkout-note">ما في دفع إلكتروني — نأكد طلبك معاك عبر واتساب.</p>
+        </form>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="mobile-cart-bar" id="mobileCartBar" hidden>
+      <button type="button" id="mobileCartButton" aria-label="افتح السلة">
+        <span class="mobile-cart-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3.5 4.5h2l2.1 10.1a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 1.9-1.5l1.4-6.4H6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="10" cy="19.4" r="1.2" fill="currentColor" /><circle cx="17.3" cy="19.4" r="1.2" fill="currentColor" /></svg></span>
+        <span class="mobile-cart-copy"><strong>عرض السلّة</strong><small id="mobileCartCount">0 أصناف</small></span>
+        <strong class="mobile-cart-total" id="mobileCartTotal">0.00 ج.س</strong>
+        <span class="mobile-cart-arrow" aria-hidden="true">←</span>
+      </button>
+    </div>
+  </body>
+</html>
